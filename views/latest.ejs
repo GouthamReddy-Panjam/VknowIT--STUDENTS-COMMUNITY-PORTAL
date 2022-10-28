@@ -1,0 +1,79 @@
+<%- include("partials/commonFiles/header.ejs") -%>
+
+  <!--CARD QUESTIONS HERE--->
+  <div class="allcards">
+    <% for(let i = 0; i<10; i++){ %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg 3 col-md-12 col-xs-12">
+          <div class="card" id="id1">
+            <div class="card-body text-primary" id="c">
+              <div id="cc">
+                <img src="https://cdn.iconscout.com/icon/free/png-256/laptop-user-1-1179329.png" id="c1">
+                <p class="card-title" id="c2"><%= q[i].username %></p>
+                <div class="content_img">
+                  <i class="fas fa-check" id="c3"></i>
+                  <div>Verified Account</div>
+                </div>
+                <div class="userBadge">
+                  <% if (q[0].answers.length < 5) { %>
+                    <p>New User</p>
+                  <% } else if (q[0].answers.length > 5 && q[0].answers.length < 10) { %>
+                    <p>Beginner</p>
+                  <% } else if (q[0].answers.length > 10 && q[0].answers.length < 25) { %>
+                    <p>This user is bronze badge holder.</p>
+                  <% } else if (q[0].answers.length > 25 && q[0].answers.length < 50) { %>
+                    <p>This user is silver badge holder.</p>
+                  <% } else if (q[0].answers.length > 50) { %>
+                    <p>This user is golder badge holder.</p>
+                  <% } %>
+                </div>
+              </div>
+              <!-- <a href="#" id="c4"><i class="fas fa-user-plus"></i>Follow</a><br> -->
+              <!-- <span id="c5">IP University</span><br> -->
+              <h6>
+                <p>Asked on <%= q[i].time %></p>
+              </h6>
+              <p class="card-text" id="c6">
+              <h2><%= q[i].questiontitle %></h2>
+              </p><br>
+              <% if (q[i].question.length < 150){ %>
+                <p id="c7"><%- q[i].question %></p>
+                <% } else { %>
+                <p id="c7"><%- q[i].question.slice(0,151) %> ".... click read answers"</p>
+                <% } %>
+              <script>
+                document.getElementById("c7").innerHTML = "<%- q[i].question %>"
+              </script>
+              <a class="readAns" href="/answer/<%= q[i].questiontitle %>">Read answers</a><br><br>
+              <!-- <a class="readAns" href="/answers">Read answers</a><br> -->
+
+              <% tags = q[i].questiontags.split(" ") %>
+              <% tags.forEach(function(tag){ %>
+              <a href="" class="btn btn-info" id="c9"><%= tag %></a>
+              <% }) %>
+
+              <div id="c8Div">
+                <% if (q[i].answers.length < 2){ %>
+                <a href="#" id="c8"><b id="id2"><%= q[i].answers.length %></b> Answer</a>
+                <% } else { %>
+                <a href="#" id="c8"><b id="id2"><%= q[i].answers.length %></b> Answers</a>
+                <% } %>
+
+                <% if (q[i].upvotes.length < 2){ %>
+                <a href="/upvote/<%= q[i].questiontitle %>" id="c8"><i class="far fa-arrow-alt-circle-up"></i><b id="id3"><%= q[i].upvotes.length %></b> Vote</a><br>
+                <% } else { %>
+                <a href="/upvote/<%= q[i].questiontitle %>" id="c8"><i class="far fa-arrow-alt-circle-up"></i><b id="id3"><%= q[i].upvotes.length %></b> Votes</a><br>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><br>
+    <% }; %>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+
+
+<%- include("partials/commonFiles/footer.ejs") -%>

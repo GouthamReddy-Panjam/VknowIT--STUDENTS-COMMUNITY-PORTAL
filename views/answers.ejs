@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= q[0].questiontitle %></title>
+  <link rel="stylesheet" href="/styles/css/answers/styles.css">
+  <script src="https://use.fontawesome.com/63d20f8d5f.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src='/styles/js/answers/script.js'></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/css/uikit.min.css ">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <header>
+    <div class="head_container">
+      <div class="logo">
+        <h3 id="brand-name">
+          <a href="/">
+            VKnowIT
+        </h3>
+        </a>
+      </div>
+      <div class="menu" id="myTopnav">
+        <ul>
+          <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="openNav()">&#9776;</a>
+          <form action="/searchResults" method="post" class="searchForm">
+            <li><input id="search" type="text" placeholder="  Search..." onkeyup="showResults(this.value)" name="SearchBar"></li>
+            <li><a href="/searchResults" class="searchIcon"><button><i class="fas fa-search"></i></button></a></li>
+          </form>
+          <li><a class="ask" href="/addQuestion"><button id="add-ques">Ask Question</button></a></li>
+
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#"><i class="fas fa-tags"></i> Tags </a>
+    <a href="#"> <i class="fa fa-filter"></i>Filter</a>
+    <a href="#"> <i class="fas fa-globe"></i> Translate</a>
+    <a href="/addQuestion"><button id="add-ques">Ask Question</button></a>
+  </div>
+
+
+  <nav>
+    <div class="navbar" id="topnavbar">
+      <span><a href="/">All Questions</a></span>
+      <span><a href="/latest">Latest</a></span>
+      <span><a href="/unanswered">Unanswered</a></span>
+
+  </nav>
+
+
+  <main>
+    <section>
+      <h2><%= q[0].questiontitle %></h2>
+      <small id="askedTime"><%= q[0].time %></small>
+    </section>
+    <hr>
+    <section>
+      <h4><%- q[0].question %></h4>
+      <!-- <span id="tag1">Tag1</span>
+      <span id="tag2">Tag2</span> -->
+      <span id="AskedBy">Asked by: <%= q[0].username %></span>
+
+
+    </section>
+    <hr>
+
+    <!--  Answers start from here -->
+
+    <div id="sort-ans">
+      <% if (c < 2){ %>
+      <h4><%= c %> Answer</h4>
+      <% } else { %>
+      <h4><%= c %> Answers</h4>
+      <% } %>
+    </div>
+
+
+
+    <% q[0].answers.forEach(function(answer){ %>
+    
+      <% if (answer.status == "active" || answer.status == "Active"){ %>
+        <section class="ans1">
+          <p id="ans1"> <img class="user1-Profile-Img" src="https://cdn.iconscout.com/icon/free/png-256/laptop-user-1-1179329.png" alt="Vikas Singh"><%= answer.username %><br><br>
+            <h6>
+              <p>Answered on <%= answer.time %></p>
+            </h6><p id="answers"><%- answer.answer %></p></p>
+        </section>
+      <% } %>
+      
+    
+    <% }) %>
+
+        <br>
+        <h3>Post your answer</h3>
+
+        <form class="answerForm" action="/postanswers" method="post">
+          <div class="home">
+            <!-- <textarea name="answer" id="editor" placeholder="Type your answer" class="yourAnswer"></textarea><br> -->
+            <textarea name="editor1"></textarea>
+            <script>
+              CKEDITOR.replace('editor1');
+            </script>
+            <br>
+            <button type="submit" class="btn btn-success" id="post">Post Answer</button>
+          </div>
+        </form>
+
+    <!-- <a href="/postanswers"><button id="askQ">Post your Answer</button></a> -->
+
+
+  </main>
+
+<%- include("partials/commonFiles/footer.ejs") -%>

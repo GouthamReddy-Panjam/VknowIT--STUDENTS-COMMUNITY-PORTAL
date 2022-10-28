@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/styles/css/forgot-style.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VknowIT - Forgot Password </title>
+</head>
+
+<body>
+
+
+  <div class="container">
+    <div class="form-content">
+      <div class="login-form">
+        <div class="title">Forgot Password</div>
+        <form action="/submitOTP" method="post">
+          <div class="input-boxes">
+            <div class="input-box otp-box" id="otp-box">
+              <input id="otp-input" type="number" placeholder="Enter Verification Code" maxlength="6" minlength="6" title="Enter OTP" oninvalid="this.setCustomValidity('Enter a valid OTP')" required
+                style="background-color: rgb(207, 206, 206); height: 50px;" name="otp">
+              <!-- <input id="otp-input" type="number" placeholder="Enter Verification Code" maxlength="6" minlength="6" title="Enter OTP" type="number" name="otp" style="background-color: rgb(207, 206, 206); height: 50px;"> -->
+            </div>
+            <div class="button input-box ">
+              <input type="submit" value="Submit" id="submit" class="submit-email submit-otp">
+            </div>
+          </div>
+        </form>
+        <div class="">
+          <a href="/"><input type="submit" value="Back" id="back_login" class="back_login"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="/styles/js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/styles/css/forgot-style.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VknowIT - Forgot Password </title>
+</head>
+
+<body>
+
+
+  <div class="container">
+    <div class="form-content">
+      <div class="login-form">
+        <div class="title">Forgot Password</div>
+        <form action="/forgot-index.html" method="post">
+          <div class="input-boxes">
+            <div class="input-box email_input">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Enter your Email" name="email" required>
+              <div class="send">
+                <input type="submit" class="send_button" value="Send" id="send-button" onclick="toggle2()">
+              </div>
+            </div>
+            <!-- <div class="button input-box ">
+              <input type="submit" value="Submit" id="submit" class="submit-email submit-otp">
+            </div> -->
+          </div>
+        </form>
+        <div class="">
+          <a href="/"><input type="submit" value="Back" id="back_login" class="back_login"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="/styles/js/script.js"></script>
+</body>
+
+</html>

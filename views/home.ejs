@@ -1,0 +1,71 @@
+<%- include("partials/commonFiles/header.ejs") -%>
+
+<div class="allcards">
+  <% questions.forEach(function(question){ %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg 3 col-md-12 col-xs-12">
+        <div class="card" id="id1">
+          <div class="card-body text-primary" id="c">
+            <div id="cc">
+              <img src="https://cdn.iconscout.com/icon/free/png-256/laptop-user-1-1179329.png" id="c1">
+              <p class="card-title" id="c2"><%= question.username %></p>
+              <div class="content_img">
+                <i class="fas fa-check" id="c3"></i>
+                <div>Verified Account</div>
+              </div>
+            </div>
+            <!-- <a href="#" id="c4"><i class="fas fa-user-plus"></i>Follow</a><br> -->
+            <!-- <span id="c5">IP University</span><br> -->
+            <h6>
+              <p>Asked on <%= question.time %></p>
+            </h6>
+            <p class="card-text" id="c6">
+              <h2><%= question.questiontitle %></h2>
+            </p>
+            <% if (question.question.length < 150){ %>
+            <p id="c7"><%- question.question %></p>
+            <% } else { %>
+            <p id="c7"><%- question.question.slice(0,151) %> ".... click read answers"</p>
+            <% } %>
+            <div class="scrollable">
+
+              <script>
+                document.getElementById("c7").innerHTML = "<%- question.question %>"
+              </script>
+            </div>
+            <a class="readAns" href="/answer/<%= question.questiontitle %>">Read answers</a><br><br>
+            <!-- <a class="readAns" href="/answers">Read answers</a><br> -->
+
+            <% tags = question.questiontags.split(" ") %>
+            <% tags.forEach(function(tag){ %>
+            <a href="" class="btn btn-info" id="c9"><%= tag %></a>
+            <% }) %>
+
+            <div id="c8Div">
+              <% if (c < 2){ %>
+              <a><%= c %> Answer</a>
+              <% } else { %>
+              <a><%= c %> Answers</a>
+              <% } %>
+              &nbsp;
+              <% if (question.upvotes.length < 2){ %>
+              <a href="/upvote/<%= question.questiontitle %>" id="c8"><i class="far fa-arrow-alt-circle-up"></i><b
+                  id="id3"><%= question.upvotes.length %></b> Vote</a><br>
+              <% } else { %>
+              <a href="/upvote/<%= question.questiontitle %>" id="c8"><i class="far fa-arrow-alt-circle-up"></i><b
+                  id="id3"><%= question.upvotes.length %></b> Votes</a><br>
+              <% } %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <% }); %>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+
+<%- include("partials/commonFiles/footer.ejs") -%>

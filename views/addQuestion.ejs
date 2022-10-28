@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ask Question</title>
+  <link rel="stylesheet" type="text/css" href="/styles/css/addQuestion/styles.css">
+  <script src="https://use.fontawesome.com/63d20f8d5f.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src='askQues.js'></script>
+  <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/css/uikit.min.css ">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <header>
+    <div class="head_container">
+      <div class="logo">
+        <h3 id="brand-name">
+          <a href="/">
+            <img src="https://www.codekaroyaaro.com/img/basic-coding-for-kids.png">Forum
+          </a>
+        </h3>
+      </div>
+      <div class="menu" id="myTopnav">
+        <ul>
+          <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="openNav()">&#9776;</a>
+          <form action="/searchResults" method="post" class="searchForm">
+            <li><input id="search" type="text" placeholder="  Search..." onkeyup="showResults(this.value)" name="SearchBar"></li>
+            <li><a href="/searchResults" class="searchIcon"><button><i class="fas fa-search"></i></button></a></li>
+          </form>
+          <li><a class="ask" href="/addQuestion"><button id="add-ques">Ask Question</button></a></li>
+          <li><a href="/user"><i class="fas fa-user-circle fa-2x"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <!-- <a href="#"><i class="fas fa-users"></i> Users</a> -->
+    <a href="#"><i class="fas fa-tags"></i> Tags </a>
+    <a href="#"><i class="fa fa-filter"></i>Filter</a>
+    <a href="#"><i class="fas fa-globe"></i> Translate</a>
+    <a href="askQues.html"><button id="add-ques">Ask Question</button></a>
+  </div>
+
+  <!--Orange navbar here-->
+  <nav>
+    <div class="navbar" id="topnavbar">
+      <span><a href="/">All Questions</a></span>
+      <!--       <span><a href="#">Trending</a></span> -->
+      <span><a href="/latest">Latest</a></span>
+      <span><a href="/unanswered">Unanswered</a></span>
+      <!--       <span><a href="#">Bounty Questions</a></span> -->
+  </nav>
+
+
+  <section>
+    <form class="" action="/addQuestion" method="post">
+      <h2>Ask a public question</h2>
+      <div class="ques-box">
+        <h5> <label class="d-block s-label mb4" for="title">
+            Title
+          </label></h5>
+        <div>
+          <p>It is requested to not use any punctuations and space at the end of the question. Otherwise you will not be able to read the answers.</p>
+          <div class="fl1 ps-relative">
+            <!-- <input id="title" name="questiontitle" type="text" maxlength="300" tabindex="100" placeholder="e.g. How to make an image responsive" class="" value="" data-min-length="15" data-max-length="150" autocomplete="off"> -->
+            <input id="title" type="text" name="questiontitle" placeholder="e.g. How to make an image responsive">
+          </div>
+        </div>
+        <br>
+
+        <h5> <label class="" for="">
+            Body
+          </label></h5>
+          <p class="s-description mt2">Be specific and imagine you’re asking a question to another person and include all the information someone would need to answer your question</p>
+
+
+        <div class="home">
+          <!-- <input class="textarea" type="textarea" rows="" cols="" name="question" placeholder="Your Question"> -->
+          <textarea name="editor1"></textarea>
+          <script>
+            CKEDITOR.replace('editor1');
+          </script>
+          <p></p>
+        </div>
+
+        <div class="home">
+          <h5>Tags</h5>
+          <p>Enter tags relevant to your question</p>
+          <input class="textarea" type="textarea" name="questiontag" value="" placeholder="Tags of the question">
+        </div><br>
+        <button type="submit" class="btn btn-success" id="post">Post Your Question</button>
+
+      </div>
+    </form>
+  </section>
+
+  <%- include("partials/commonFiles/footer.ejs") -%>

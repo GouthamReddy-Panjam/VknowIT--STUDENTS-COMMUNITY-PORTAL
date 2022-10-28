@@ -1,0 +1,36 @@
+<%- include("partials/commonFiles/header.ejs") -%>
+
+<section class="sectionForm">
+  <!-- <h2>Ask a public question</h2>
+        <div class="ques-box">
+          <label class="d-block s-label mb4" for="title">
+            Title
+            <div>
+          </label> -->
+  <!-- <p>Be specific and imagine you’re asking a question to another person</p>
+          <div class="fl1 ps-relative">
+            <input id="title" name="title" type="text" maxlength="300" tabindex="100" placeholder="How to master javascript?" class="" value="" data-min-length="15" data-max-length="150" autocomplete="off">
+          </div>
+        </div> -->
+
+  <label class="" for="" id="secLabel">
+    Answer
+    <p class="s-description mt2" id="secP">Include all the information someone
+      would need to understand your answer.</p>
+  </label>
+
+  <form class="answerForm" action="/postanswers" method="post">
+    <div class="home">
+      <!-- <textarea name="answer" id="editor" placeholder="Type your answer" class="yourAnswer"></textarea><br> -->
+      <textarea name="editor1"></textarea>
+      <script>
+        CKEDITOR.replace('editor1');
+      </script>
+      <button type="submit" class="btn btn-success" id="post">Post Answer</button>
+    </div>
+  </form>
+
+
+</section>
+
+<%- include("partials/commonFiles/footer.ejs") -%>

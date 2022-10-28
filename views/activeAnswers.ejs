@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= q[0].questiontitle %></title>
+  <link rel="stylesheet" href="/styles/css/answers/styles.css">
+  <script src="https://use.fontawesome.com/63d20f8d5f.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src='/styles/js/answers/script.js'></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/css/uikit.min.css ">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <header>
+    <div class="head_container">
+      <div class="logo">
+        <h3 id="brand-name">
+          <a href="/">
+            VKnowIT
+        </h3>
+        </a>
+      </div>
+      <div class="menu" id="myTopnav">
+        <ul>
+          <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="openNav()">&#9776;</a>
+          <form action="/searchResults" method="post" class="searchForm">
+            <li><input id="search" type="text" placeholder="  Search..." onkeyup="showResults(this.value)" name="SearchBar"></li>
+            <li><a href="/searchResults" class="searchIcon"><button><i class="fas fa-search"></i></button></a></li>
+          </form>
+          <li><a class="ask" href="/addQuestion"><button id="add-ques">Ask Question</button></a></li>
+
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/addQuestion"><button id="add-ques">Ask Question</button></a>
+  </div>
+
+
+  <nav>
+    <div class="navbar" id="topnavbar">
+      
+      <span><a href="/adminPage">Active Questions</a></span>
+      <span><a href="/disabledQues">Disabled Questions</a></span>
+
+  </nav>
+
+
+  <main>
+    <section>
+      <h2><%= q[0].questiontitle %></h2>
+      <small id="askedTime"><%= q[0].time %></small><a href="/admin/postanswers"><button id="askQ">Post your Answer</button></a>
+    </section>
+    <hr>
+    <section>
+      <h4><%- q[0].question %></h4>
+      <!-- <span id="tag1">Tag1</span>
+      <span id="tag2">Tag2</span> -->
+      <span id="AskedBy">Asked by: <%= q[0].username %></span>
+
+
+    </section>
+    <hr>
+
+    <!--  Answers start from here -->
+
+    <div id="sort-ans">
+      <% if (q[0].answers.length < 2){ %>
+      <h4><%= q[0].answers.length  %> Answer</h4>
+      <% } else { %>
+      <h4><%= q[0].answers.length  %> Answers</h4>
+      <% } %>
+    </div>
+
+
+
+    <% q[0].answers.forEach(function(answer){ %>
+    <section class="ans1">
+      <p id="ans1"> <img class="user1-Profile-Img" src="https://cdn.iconscout.com/icon/free/png-256/laptop-user-1-1179329.png" alt="Vikas Singh"><%= answer.username %><br><br>
+      <h6>
+        <p>Answered on <%= answer.time %></p>
+      </h6><p id="answers"><%- answer.answer %></p></p>
+      
+      <% if (answer.status == "active" || answer.status == "Active"){ %>
+        <a class="readAns" href="/updateAnswerToDisable/<%= answer.time %>">
+          Disable this Answer
+        </a>
+      <% } else if(answer.status == "disable" || answer.status == "Disable") { %>
+          <a class="readAns" href="/updateAnswerToActive/<%= answer.time %>">
+            Active this Answer
+          </a>
+      <% } %>
+    </section>
+    <% }) %>
+  </main>
+
+<%- include("partials/commonFiles/footer.ejs") -%>
