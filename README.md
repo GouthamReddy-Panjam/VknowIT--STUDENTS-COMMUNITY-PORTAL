@@ -86,8 +86,11 @@ So, as you can see, we have successfully implemented a simple student community 
 
 # REFERENCES
 Stack Overflow https://stackoverflow.com/
+
 Quora https://www.quora.com/
+
 Brainly https://brainly.in/
+
 YouTube https://www.youtube.com/
 
 
